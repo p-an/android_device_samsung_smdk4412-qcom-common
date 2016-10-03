@@ -27,7 +27,7 @@
  *
  */
 
-#include "hardware/gps.h"
+#include "hardware/gps_internal.h"
 
 #include <stdlib.h>
 
