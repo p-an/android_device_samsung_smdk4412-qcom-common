@@ -48,6 +48,7 @@ import java.util.Collections;
 
 import com.android.internal.telephony.uicc.IccCardApplicationStatus;
 import com.android.internal.telephony.uicc.IccCardStatus;
+import com.android.internal.telephony.uicc.IccUtils;
 
 import com.android.internal.telephony.uicc.IccUtils;
 
@@ -245,9 +246,6 @@ public class smdk4x12QComRIL extends RIL implements CommandsInterface {
             dc.isMT = (0 != p.readInt());
             dc.als = p.readInt();
             voiceSettings = p.readInt();
-            if (isGSM){
-                p.readInt();
-            }
             dc.isVoice = (0 == voiceSettings) ? false : true;
             dc.isVoicePrivacy = (0 != p.readInt());
             if (isGSM) {
@@ -412,7 +410,7 @@ public class smdk4x12QComRIL extends RIL implements CommandsInterface {
             /* Nothing we care about, go up */
             p.setDataPosition(dataPosition);
             // Forward responses that we are not overriding to the super class
-            return super.processSolicited(p,type);
+            return super.processSolicited(p, type);
         }
         rr = findAndRemoveRequestFromList(serial);
         if (rr == null) {
